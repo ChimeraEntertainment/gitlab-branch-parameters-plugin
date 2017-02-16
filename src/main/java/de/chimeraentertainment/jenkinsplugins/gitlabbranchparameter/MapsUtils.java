@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.StashBranchParameter;
+package de.chimeraentertainment.jenkinsplugins.gitlabbranchparameter;
 
 import java.util.Map;
 import java.util.Set;

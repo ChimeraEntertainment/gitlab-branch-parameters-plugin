@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.StashBranchParameter;
+package de.chimeraentertainment.jenkinsplugins.gitlabbranchparameter;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;

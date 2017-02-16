@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.StashBranchParameter;
+package de.chimeraentertainment.jenkinsplugins.gitlabbranchparameter;
 
 import hudson.Extension;
 import hudson.model.ParameterDefinition;

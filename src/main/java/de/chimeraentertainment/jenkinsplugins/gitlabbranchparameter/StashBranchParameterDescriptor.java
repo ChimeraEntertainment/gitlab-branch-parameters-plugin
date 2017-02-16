@@ -1,4 +1,4 @@
-package org.jenkinsci.plugins.StashBranchParameter;
+package de.chimeraentertainment.jenkinsplugins.gitlabbranchparameter;
 
 import hudson.model.ParameterDefinition;
 import hudson.util.FormValidation;
@@ -49,7 +49,7 @@ public class StashBranchParameterDescriptor extends ParameterDefinition.Paramete
 	@Override
 	public String getDisplayName()
 	{
-		return "Stash Branch Parameter";
+		return "GitLab Branch Parameter";
 	}
 
 	public String getUsername()
