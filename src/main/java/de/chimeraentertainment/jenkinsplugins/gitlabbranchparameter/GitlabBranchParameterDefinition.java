@@ -13,7 +13,7 @@ import org.kohsuke.stapler.StaplerRequest;
 import java.io.IOException;
 import java.util.Map;
 
-public class StashBranchParameterDefinition extends ParameterDefinition
+public class GitlabBranchParameterDefinition extends ParameterDefinition
 {
 	private String repository;
 	private String defaultValue;
@@ -21,7 +21,7 @@ public class StashBranchParameterDefinition extends ParameterDefinition
 	private String tagNameRegex;
 
 	@DataBoundConstructor
-	public StashBranchParameterDefinition(String name, String description, String repository, String defaultValue)
+	public GitlabBranchParameterDefinition(String name, String description, String repository, String defaultValue)
 	{
 		super(name, description);
 		this.repository = repository;
@@ -96,7 +96,7 @@ public class StashBranchParameterDefinition extends ParameterDefinition
 	{
 		String project = repository.split("/")[0];
 		String repo = repository.split("/")[1];
-		StashConnector connector = new StashConnector(getDescriptor().getStashApiUrl(), getDescriptor().getUsername(), getDescriptor().getPassword());
+		GitlabConnector connector = new GitlabConnector(getDescriptor().getApiUrl(), getDescriptor().getUsername(), getDescriptor().getPassword());
 
 		Map<String, String> map = connector.getBranches(project, repo, branchNameRegex);
 		if (StringUtils.isNotBlank(defaultValue))
@@ -109,13 +109,13 @@ public class StashBranchParameterDefinition extends ParameterDefinition
 	}
 
 	@Override
-	public StashBranchParameterDescriptorImpl getDescriptor()
+	public GitlabBranchParameterDescriptorImpl getDescriptor()
 	{
-		return (StashBranchParameterDescriptorImpl) super.getDescriptor();
+		return (GitlabBranchParameterDescriptorImpl) super.getDescriptor();
 	}
 
 	@Extension
-	public static class StashBranchParameterDescriptorImpl extends StashBranchParameterDescriptor
+	public static class GitlabBranchParameterDescriptorImpl extends GitlabBranchParameterDescriptor
 	{
 
 	}

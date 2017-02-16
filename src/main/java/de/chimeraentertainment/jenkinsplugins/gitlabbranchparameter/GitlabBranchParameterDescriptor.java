@@ -31,18 +31,18 @@ import java.net.UnknownHostException;
 import java.util.List;
 import java.util.Map;
 
-public class StashBranchParameterDescriptor extends ParameterDefinition.ParameterDescriptor
+public class GitlabBranchParameterDescriptor extends ParameterDefinition.ParameterDescriptor
 {
 	private String username;
 
 	private Secret password;
 
-	private String stashApiUrl;
+	private String apiUrl;
 	private String repo;
 
-	public StashBranchParameterDescriptor()
+	public GitlabBranchParameterDescriptor()
 	{
-		super(StashBranchParameterDefinition.class);
+		super(GitlabBranchParameterDefinition.class);
 		load();
 	}
 
@@ -73,14 +73,14 @@ public class StashBranchParameterDescriptor extends ParameterDefinition.Paramete
 		this.password = password;
 	}
 
-	public String getStashApiUrl()
+	public String getApiUrl()
 	{
-		return stashApiUrl;
+		return apiUrl;
 	}
 
-	public void setStashApiUrl(String stashApiUrl)
+	public void setApiUrl(String apiUrl)
 	{
-		this.stashApiUrl = stashApiUrl;
+		this.apiUrl = apiUrl;
 	}
 
 	public String getRepo()
@@ -96,7 +96,7 @@ public class StashBranchParameterDescriptor extends ParameterDefinition.Paramete
 	@Override
 	public boolean configure(StaplerRequest req, JSONObject formData) throws FormException
 	{
-		stashApiUrl = formData.getString("stashApiUrl");
+		apiUrl = formData.getString("apiUrl");
 		username = formData.getString("username");
 		password = Secret.fromString(formData.getString("password"));
 
@@ -104,13 +104,13 @@ public class StashBranchParameterDescriptor extends ParameterDefinition.Paramete
 		return super.configure(req, formData);
 	}
 
-	public FormValidation doCheckUsername(@QueryParameter final String stashApiUrl, @QueryParameter final String username, @QueryParameter final String password) throws IOException, ServletException
+	public FormValidation doCheckUsername(@QueryParameter final String apiUrl, @QueryParameter final String username, @QueryParameter final String password) throws IOException, ServletException
 	{
-		if (StringUtils.isBlank(stashApiUrl))
+		if (StringUtils.isBlank(apiUrl))
 		{
 			return FormValidation.ok();
 		}
-		URL url = new URL(stashApiUrl);
+		URL url = new URL(apiUrl);
 
 		HttpHost target = new HttpHost(url.getHost(), url.getPort(), url.getProtocol());
 		CredentialsProvider credsProvider = new BasicCredentialsProvider();
@@ -155,14 +155,14 @@ public class StashBranchParameterDescriptor extends ParameterDefinition.Paramete
 		}
 	}
 
-	public FormValidation doCheckPassword(@QueryParameter final String stashApiUrl, @QueryParameter final String username, @QueryParameter final String password) throws IOException, ServletException
+	public FormValidation doCheckPassword(@QueryParameter final String apiUrl, @QueryParameter final String username, @QueryParameter final String password) throws IOException, ServletException
 	{
-		return doCheckUsername(stashApiUrl, username, password);
+		return doCheckUsername(apiUrl, username, password);
 	}
 
 	public ListBoxModel doFillRepositoryItems() throws MalformedURLException
 	{
-		StashConnector connector = new StashConnector(getStashApiUrl(), getUsername(), getPassword());
+		GitlabConnector connector = new GitlabConnector(getApiUrl(), getUsername(), getPassword());
 		ListBoxModel items = new ListBoxModel();
 		Map<String, List<String>> repositories = connector.getRepositories();
 

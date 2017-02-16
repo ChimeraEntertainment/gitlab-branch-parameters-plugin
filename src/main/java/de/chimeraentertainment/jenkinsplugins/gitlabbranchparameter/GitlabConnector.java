@@ -30,7 +30,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.regex.Pattern;
 
-public class StashConnector
+public class GitlabConnector
 {
 	private String username;
 	private String password;
@@ -39,11 +39,11 @@ public class StashConnector
 	private HttpHost target = null;
 	private HttpClientContext localContext;
 
-	public StashConnector(String stashApiUrl, String username, String password) throws MalformedURLException
+	public GitlabConnector(String apiUrl, String username, String password) throws MalformedURLException
 	{
 		this.username = username;
 		this.password = password;
-		url = new URL(stashApiUrl);
+		url = new URL(apiUrl);
 		target = new HttpHost(url.getHost(), url.getPort(), url.getProtocol());
 	}
 
