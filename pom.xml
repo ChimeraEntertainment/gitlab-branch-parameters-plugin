@@ -19,9 +19,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <version>4.5.1</version>
+            <groupId>org.jenkins-ci.plugins</groupId>
+            <artifactId>gitlab-plugin</artifactId>
+            <version>1.4.5</version>
         </dependency>
     </dependencies>
 
@@ -40,9 +40,14 @@
 
     <developers>
         <developer>
-            <id>eernie</id>
-            <name>Erwin Oldenkamp</name>
-            <email>oldenkamperwin@gmail.com</email>
+            <id>yelworc</id>
+            <name>Markus Dolic</name>
+            <email>mdolic@chimera-entertainment.de</email>
+        </developer>
+        <developer>
+            <id>m4x1202</id>
+            <name>Max Walther</name>
+            <email>mwalther@chimera-entertainment.de</email>
         </developer>
     </developers>
 
