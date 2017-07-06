@@ -22,6 +22,9 @@ import java.util.logging.Logger;
 
 public class GitlabBranchParameterDefinition extends SimpleParameterDefinition
 {
+	private String repository;
+	private String defaultValue;
+
 	private static final Logger LOGGER = Logger.getLogger(GitlabBranchParameterDefinition.class.getName());
 
 	@Extension
@@ -43,7 +46,8 @@ public class GitlabBranchParameterDefinition extends SimpleParameterDefinition
 			return new GitlabBranchParameterDefinition(
 				formData.getString("name"),
 				formData.getString("description"),
-				formData.getString("repository")
+				formData.getString("repository"),
+				formData.getString("defaultValue")
 			);
 		}
 
@@ -53,13 +57,12 @@ public class GitlabBranchParameterDefinition extends SimpleParameterDefinition
 		}
 	}
 
-	private String repository;
-
 	@DataBoundConstructor
-	public GitlabBranchParameterDefinition(String name, String description, String repository)
+	public GitlabBranchParameterDefinition(String name, String description, String repository, String defaultValue)
 	{
 		super(StringUtils.trim(name), description);
 		this.repository = repository;
+		this.defaultValue = defaultValue;
 	}
 
 	public String getRepository()
@@ -67,9 +70,12 @@ public class GitlabBranchParameterDefinition extends SimpleParameterDefinition
 		return repository;
 	}
 
-	public void setRepository(String value)
-	{
-		this.repository = value;
+	public void setRepository(String value) { this.repository = value; }
+
+	public String getDefaultValue() { return defaultValue; }
+
+	public void setDefaultValue(String value) {
+		this.defaultValue = value;
 	}
 
 	@Override

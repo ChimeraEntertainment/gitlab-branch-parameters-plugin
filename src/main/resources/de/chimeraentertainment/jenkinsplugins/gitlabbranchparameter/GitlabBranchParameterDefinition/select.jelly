@@ -1,10 +1,11 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
     <j:set var="branches" value="${it.branches}"/>
+    <j:set var="defaultValue" value="${it.defaultValue}"/>
     <select name="value" class="chosen-select" data-placeholder="${it.description}">
         <j:forEach var="branch" items="${branches}">
             <j:choose>
-                <j:when test="${branch.value eq branches}">
+                <j:when test="${branch.value eq defaultValue}">
                     <option value="${branch.key}" selected="selected">${branch.value}</option>
                 </j:when>
                 <j:when test="${branch.value.equals('master') &amp;&amp; branches.equals('')}">
