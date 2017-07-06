@@ -1,6 +1,5 @@
 <?jelly escape-by-default='true'?>
 <j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form" xmlns:st="jelly:stapler">
-    <link rel="stylesheet" type="text/css" href="${rootURL}/plugin/StashBranchParameter/chosen/chosen.min.css"/>
     <f:entry title="${it.name}" description="${it.description}">
         <div name="parameter" description="${it.description}">
             <input type="hidden" name="name" value="${it.name}"/>
@@ -8,7 +7,4 @@
             <st:include page="select.jelly" />
         </div>
     </f:entry>
-
-    <script src="${rootURL}/plugin/StashBranchParameter/chosen/chosen.proto.min.js"/>
-    <script src="${rootURL}/plugin/StashBranchParameter/index.js"/>
 </j:jelly>
